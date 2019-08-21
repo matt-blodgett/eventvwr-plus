@@ -1,1 +1,5 @@
+# IDEA Files
 *.pro.user
+
+# Build Directories
+build*
