@@ -4,7 +4,30 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
     resize(400, 175);
+    setStyleSheet("QWidget {font-family: \"Segoe UI\"; font-size: 12px;}");
+
+    setWindowTitle("Run");
+
+    Qt::WindowFlags flags;
+    flags |= Qt::Dialog;
+    flags |= Qt::CustomizeWindowHint;
+    flags |= Qt::WindowTitleHint;
+    flags |= Qt::WindowCloseButtonHint;
+    flags |= Qt::MSWindowsFixedSizeDialogHint;
+    setWindowFlags(flags);
+
+    QPixmap runPixmap("./assets/run.png");
+    setWindowIcon(QIcon(runPixmap));
 }
+
+
+
+
+//        frm_open = OpenFrame(self)
+
+//        grid_main = QtWidgets.QGridLayout(self)
+//        grid_main.addWidget(frm_open, 0, 0, 1, 1)
+
 
 
 
@@ -94,31 +117,3 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 //        cbx_open.setObjectName('cbxOpen')
 //        lbl_open.setObjectName('lblOpen')
 
-
-
-//class Root(QtWidgets.QMainWindow):
-
-//    def __init__(self, *args):
-//        super().__init__(*args)
-
-//        self.setStyleSheet('QWidget {font-family: "Segoe UI"; font-size: 12px;}')
-
-//        self.setWindowTitle('Run')
-//        self.resize(400, 175)
-
-//        window_flags = Qt.Dialog
-//        window_flags |= Qt.CustomizeWindowHint
-//        window_flags |= Qt.WindowTitleHint
-//        window_flags |= Qt.WindowCloseButtonHint
-//        window_flags |= Qt.MSWindowsFixedSizeDialogHint
-//        self.setWindowFlags(window_flags)
-
-//        run_pixmap = QtGui.QPixmap('./assets/run.png')
-//        window_icon = QtGui.QIcon(run_pixmap)
-//        self.setWindowIcon(window_icon)
-
-
-//        frm_open = OpenFrame(self)
-
-//        grid_main = QtWidgets.QGridLayout(self)
-//        grid_main.addWidget(frm_open, 0, 0, 1, 1)
