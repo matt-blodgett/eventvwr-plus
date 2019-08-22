@@ -2,7 +2,7 @@
 #define MFRAMECOMMAND_H
 
 
-#include <QWidget>
+#include "common/mframe.h"
 
 
 QT_BEGIN_INCLUDE_NAMESPACE
@@ -11,21 +11,21 @@ class QComboBox;
 QT_END_INCLUDE_NAMESPACE
 
 
-class MFrameCommand : public QWidget
+class MFrameCommand : public MFrame
 {
     Q_OBJECT
 
 public:
     explicit MFrameCommand(QWidget *parent = nullptr);
 
+public:
+    QComboBox *cbxOpen();
+
 private:
     QLabel *m_lblIcon = nullptr;
     QLabel *m_lblInfo = nullptr;
     QLabel *m_lblOpen = nullptr;
     QComboBox *m_cbxOpen = nullptr;
-
-protected:
-    void paintEvent(QPaintEvent *event);
 };
 
 

@@ -6,6 +6,7 @@
 
 
 class MFrameCommand;
+class MFrameButtons;
 
 
 class MRoot : public QMainWindow
@@ -17,6 +18,13 @@ public:
 
 private:
     MFrameCommand *m_frmCommand = nullptr;
+    MFrameButtons *m_frmButtons = nullptr;
+
+private slots:
+    void commandTextChanged(const QString &text);
+    void executeCommand();
+    void browseCommands();
+    void exit();
 };
 
 

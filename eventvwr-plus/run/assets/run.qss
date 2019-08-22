@@ -19,7 +19,12 @@ QWidget#lblInfo {
     margin-left: 10px;
 }
 
-QWidget#cbxOpen {
+QComboBox {
     margin-left: 15px;
     padding: 2px;
+}
+
+QPushButton {
+    width: 80px;
+    height: 18px;
 }
