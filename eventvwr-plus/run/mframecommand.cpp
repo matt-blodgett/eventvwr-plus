@@ -19,17 +19,19 @@ MFrameCommand::MFrameCommand(QWidget *parent) : QWidget(parent)
     grid_main->addWidget(m_lblInfo, 1, 1, 1, 1);
     grid_main->addWidget(m_lblOpen, 2, 0, 1, 1);
     grid_main->addWidget(m_cbxOpen, 2, 1, 1, 1);
+    grid_main->setColumnStretch(1, 1);
+//    grid_main->setContentsMargins(left, top, right, bottom);
+    grid_main->setContentsMargins(5, 5, 10, 10);
+    grid_main->setSpacing(0);
 
-    QPixmap runPixmap(":/icons/run.png");
-    runPixmap = runPixmap.scaled(48, 48);
+    QPixmap runPixmap(":/icons/run-bg.png");
+    QPixmap openPixmap(":/icons/open.png");
     m_lblIcon->setPixmap(runPixmap);
+    m_lblOpen->setPixmap(openPixmap);
 
     m_lblInfo->setText("Type the name of a program, folder, document, or Internet resource, and Windows will open it for you.");
     m_lblInfo->setWordWrap(true);
-
-    m_lblOpen->setText("&Open:");
     m_cbxOpen->setEditable(true);
-    m_lblOpen->setBuddy(m_cbxOpen);
 
     m_lblIcon->setObjectName("lblIcon");
     m_lblInfo->setObjectName("lblInfo");

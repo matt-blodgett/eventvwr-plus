@@ -17,8 +17,6 @@ MRoot::MRoot(QWidget *parent) : QMainWindow(parent)
     grid_main->addWidget(m_frmCommand, 0, 0, 1, 1);
     grid_main->setRowStretch(1, 1);
 
-    resize(400, 175);
-
     setWindowTitle("Run");
 
     Qt::WindowFlags flags;
@@ -36,4 +34,6 @@ MRoot::MRoot(QWidget *parent) : QMainWindow(parent)
     if (qssFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         setStyleSheet(qssFile.readAll());
     }
+
+    resize(400, 175);
 }

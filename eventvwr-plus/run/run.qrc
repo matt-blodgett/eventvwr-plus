@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/icons">
         <file alias="run.png">assets/run.png</file>
+        <file alias="run-bg.png">assets/run-bg.png</file>
+        <file alias="open.png">assets/open.png</file>
     </qresource>
 </RCC>
