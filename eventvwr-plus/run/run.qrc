@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/styles">
+        <file alias="run.qss">assets/run.qss</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="run.png">assets/run.png</file>
+    </qresource>
+</RCC>

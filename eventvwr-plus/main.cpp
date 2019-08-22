@@ -1,11 +1,12 @@
-#include "mainwindow.h"
+#include "run/mroot.h"
 #include <QApplication>
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    MainWindow wnd;
+
+    MRoot wnd;
     wnd.show();
 
     return app.exec();

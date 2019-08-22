@@ -1,0 +1,18 @@
+QWidget {
+    font-family: "Segoe UI";
+	font-size: 12px;
+}
+
+QWidget#frmCommand {
+    background-color: #FFFFFF;
+}
+
+QLabel#lblIcon {
+    margin-left: 10px;
+}
+QLabel#lblOpen {
+    margin-left: 10px;
+}
+QLabel#lblInfo {
+    margin-left: 10px;
+}

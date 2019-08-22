@@ -13,7 +13,12 @@ TARGET = eventvwr-plus
 TEMPLATE = app
 
 
+RESOURCES += run/run.qrc
+
+
 SOURCES += main.cpp
 
-HEADERS += mainwindow.h
-SOURCES += mainwindow.cpp
+HEADERS += run/mroot.h
+SOURCES += run/mroot.cpp
+HEADERS += run/mframecommand.h
+SOURCES += run/mframecommand.cpp
