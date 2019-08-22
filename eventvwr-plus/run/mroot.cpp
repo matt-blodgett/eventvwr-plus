@@ -8,9 +8,21 @@
 #include <QFileDialog>
 #include <QPushButton>
 #include <QComboBox>
+#include <QLineEdit>
 
+#include <QProcess>
 #include <QFile>
 #include <QDir>
+
+#include <QJsonDocument>
+#include <QJsonObject>
+
+
+
+#include <QDebug>
+
+
+QString lookupCommand(const QString &cmdIn);
 
 
 MRoot::MRoot(QWidget *parent) : QMainWindow(parent)
@@ -50,8 +62,8 @@ MRoot::MRoot(QWidget *parent) : QMainWindow(parent)
     setFixedSize(QSize(400, 175));
 
     m_frmButtons->btnOk()->setDisabled(true);
-
     connect(m_frmCommand->cbxOpen(), &QComboBox::editTextChanged, this, &MRoot::commandTextChanged);
+    connect(m_frmCommand->cbxOpen()->lineEdit(), &QLineEdit::returnPressed, this, &MRoot::executeCommand);
     connect(m_frmButtons->btnOk(), &QPushButton::released, this, &MRoot::executeCommand);
     connect(m_frmButtons->btnCancel(), &QPushButton::released, this, &MRoot::exit);
     connect(m_frmButtons->btnBrowse(), &QPushButton::released, this, &MRoot::browseCommands);
@@ -63,7 +75,12 @@ void MRoot::commandTextChanged(const QString &text)
 }
 void MRoot::executeCommand()
 {
+    QString cmd = m_frmCommand->cbxOpen()->currentText();
+    cmd = lookupCommand(cmd);
 
+    if (!cmd.isEmpty()) {
+        QProcess::startDetached(cmd);
+    }
 }
 void MRoot::browseCommands()
 {
@@ -78,3 +95,24 @@ void MRoot::exit()
 {
     window()->close();
 }
+
+
+QString lookupCommand(const QString &cmdIn)
+{
+    QFile jsonFile("./commands.json");
+    if (jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QJsonParseError jsonError;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(), &jsonError);
+        if (jsonError.error == QJsonParseError::NoError) {
+            for (QString key : jsonDoc.object().keys()) {
+                if (key == cmdIn) {
+                    return jsonDoc[key].toString();
+                }
+            }
+        }
+    }
+
+    return cmdIn;
+}
+
+
