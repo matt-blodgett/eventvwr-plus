@@ -18,10 +18,7 @@
 #include <QJsonObject>
 
 
-#include <QDebug>
-
-
-QString lookupCommand(const QString &cmdIn)
+QString lookupCommand(const QString &cmd)
 {
     QFile jsonFile("./commands.json");
     if (jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -29,18 +26,18 @@ QString lookupCommand(const QString &cmdIn)
         QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(), &jsonError);
         if (jsonError.error == QJsonParseError::NoError) {
             for (QString key : jsonDoc.object().keys()) {
-                if (key == cmdIn) {
+                if (key == cmd) {
                     return jsonDoc[key].toString();
                 }
             }
         }
     }
 
-    if (cmdIn.mid(0, 3) == "cmd") {
+    if (cmd.mid(0, 3) == "cmd") {
         return "python ./cmd.py";
     }
 
-    return cmdIn;
+    return cmd;
 }
 
 
