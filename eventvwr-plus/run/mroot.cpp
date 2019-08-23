@@ -18,11 +18,30 @@
 #include <QJsonObject>
 
 
-
 #include <QDebug>
 
 
-QString lookupCommand(const QString &cmdIn);
+QString lookupCommand(const QString &cmdIn)
+{
+    QFile jsonFile("./commands.json");
+    if (jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QJsonParseError jsonError;
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(), &jsonError);
+        if (jsonError.error == QJsonParseError::NoError) {
+            for (QString key : jsonDoc.object().keys()) {
+                if (key == cmdIn) {
+                    return jsonDoc[key].toString();
+                }
+            }
+        }
+    }
+
+    if (cmdIn.mid(0, 3) == "cmd") {
+        return "python ./cmd.py";
+    }
+
+    return cmdIn;
+}
 
 
 MRoot::MRoot(QWidget *parent) : QMainWindow(parent)
@@ -85,6 +104,7 @@ void MRoot::executeCommand()
 void MRoot::browseCommands()
 {
     QString path = QFileDialog::getOpenFileName(this, "Browse");
+
     if(!path.isEmpty()) {
         QString setPath = QDir::toNativeSeparators(path);
         QString editText = "\"" + setPath + "\"";
@@ -95,24 +115,3 @@ void MRoot::exit()
 {
     window()->close();
 }
-
-
-QString lookupCommand(const QString &cmdIn)
-{
-    QFile jsonFile("./commands.json");
-    if (jsonFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QJsonParseError jsonError;
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll(), &jsonError);
-        if (jsonError.error == QJsonParseError::NoError) {
-            for (QString key : jsonDoc.object().keys()) {
-                if (key == cmdIn) {
-                    return jsonDoc[key].toString();
-                }
-            }
-        }
-    }
-
-    return cmdIn;
-}
-
-
