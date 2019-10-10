@@ -26,4 +26,4 @@ In the future, it will support `*` matching.
 
 It could be used to trick scammers or maybe for pranks!
 
-![Side by side example](./screen.png)
+![Side by side example](./screen.PNG)
