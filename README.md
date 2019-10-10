@@ -1,6 +1,7 @@
 # eventvwr-plus
 
 This is a fun project in which I try to create different GUI programs that emulate real, native Windows 10 apps.
+
 The inspiration came from Twitch.tv streamer [Kitboga](https://www.twitch.tv/kitboga), who is known for calling phone scammers and wasting their time.
 They will often gain access to his computer where they will find a host of fake programs designed to mess with them, most notably a fake bank account webpage.
 
